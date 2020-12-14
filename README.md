@@ -93,6 +93,21 @@ Pour garder la sécurité et avoir un contrôle sur les droits d’accès à cet
 * Login
 * Mot de passe
 
+<img src="/Login.png">
 
+## Le Résultat Final :
 
+Presque la totalité du trajet est déjà effectué, il ne reste donc qu’à mettre pour chaque entité de la base de donnée les quatre fonctions qu’on a définie. Puis on obtient le projet Final suivant :
 
+<img src="/APP.png"> 
+
+## Fonctionalité non implimanté : 
+
+Le travail effectuer est assez important, il reste extensible .Voila quelques idées proposées pour l'amélioration :
+
+* ajouter la gestion des niveaux et des classes.
+* Ajouter une interface séparé pour les professeurs, permettant la saisi des notes.
+* Ajouter l’option de rédaction et impression automatique des bulletins de chaque
+étudiant.
+* Elargir notre application afin de gérer un établissement du niveau supérieur tel
+que notre école. 
