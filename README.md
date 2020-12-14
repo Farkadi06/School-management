@@ -60,13 +60,11 @@ Qt est un Framework orienté objet et développé en C++ par QtDevelopmentFramew
 
 Le module Qt SQL fournit une couche pilote, une couche API SQL et une couche d'interface utilisateur pour les bases de données SQL. SQLite est une bibliothèque in-process qui implémente un moteur de base de données SQL transactionnel autonome, sans serveur et sans configuration. Fondamentalement, une base de données stockée dans un seul fichier (ou mémoire).
 Qt offre un support (pilotes) pour d'autres bases de données populaires comme MySQL et PostgreSQL, mais SQLite est l'option la plus simple et la plus rapide pour une application simple et elle devrait être plus que suffisante dans la plupart des cas. Alors , à travers ce code je manipule ma connexion à la base donné local : 
-  * connOpen() //Pour se connécté à la base de donnée « database.db »
-  * connClose() //Pour férmé la connection à la base de donnée .
   
-#include <QSqlDatabase>
-#include <QSqlDriver>
-#include <QSqlError>
-#include <QSqlQuery> 
+`#include <QSqlDatabase>`
+`#include <QSqlDriver>`
+`#include <QSqlError>`
+`#include <QSqlQuery>`
 
   * connOpen() //Pour se connécté à la base de donnée « database.db »
   * connClose() //Pour férmé la connection à la base de donnée .
@@ -86,5 +84,15 @@ atabase.db");
  return false;}
  else{
  qDebug()<<"Conneted...";
- return true;}  ```
+ return true;}
+ ```
+
+## L’administration :
+
+Pour garder la sécurité et avoir un contrôle sur les droits d’accès à cette application on aura besoin d’une interface d’administration, à partir de laquelle on doit se connecté avant de pouvoir accéder au contenue de l’application. Pour cela on a ajouté une autre table d’administrateurs qui aura les attributs suivants :
+* Login
+* Mot de passe
+
+
+
 
