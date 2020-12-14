@@ -17,11 +17,74 @@ Si le besoin du projet est fixé . Les étapes suivantes de la conception devien
  
  Le but général est de gérer l’ensemble des étudiants , professeurs et matière d’une école. Le but général est de gérer l’ensemble des étudiants , professeurs et matière d’une
 école. Dans la gestion des étudiants on traitera :
-Markup : * La liste des étudiants du lycée
-         * La gestion des absences
-         * La note d’un étudiant dans une matière
+
+* La liste des étudiants du lycée
+* La gestion des absences
+* La note d’un étudiant dans une matière
+
+## Les Règles de Gestion : 
+
+Réaliser une application Qt pour gérer l’ensemble des étudiants, des professeurs et des matières de votre école. L’application doit gérer :
+* La liste des étudiants de l’école.
+* La liste des professeurs de l’école.
+* La liste des matières enseignées.
+* les notes d’un étudiant dans une matière donnée.
+
+Pour chaque catégorie (étudiant, professeur, matière, …) l’utilisateur doit avoir la possibilité de :
+- Ajouter un élément
+- Modifier un élément
+- Supprimer un élément
+- Afficher la liste de tous les éléments
+
+Pour des raisons de sécurité on ajoutera une table d’administrateurs pour que seuls les personnels ayant le droit de se connecter puissent accéder à l’interface et faire les changements cité dessus sur la base de données.
 
 
+## Modèle Logique de Donnée
+
+* Etudiant (numapp,cne,cin,nom,prenom,adresse,date_naissance)
+* Matiere (id_matiere,libelle,coefficient,#id_prof)
+* Professeur (id_prof,nom,prenom)
+* Abscence (#numapp,#id_matiere,date_abscence)
+* Evaluation (#numapp,#id_matiere,note)
 
 
+## Overview sur les outils utilisé :
+
+### La relation entre C++ et Qt : 
+
+Pour ce projet j'ai essayé d’utiliser des technologies diverses de développement d’application professionnel, tout d’abord on travaillera avec la programmation Orienté Objet et comme environnement de développement on a choisi le langage C++.
+
+Qt est un Framework orienté objet et développé en C++ par QtDevelopmentFrameworks, filiale de Digia. Il offre des composants d'interface graphique (widgets), d'accès aux données, de connexions réseaux, de gestion des fils d'exécution, d'analyse XML, etc. Qt est par certains aspects un framework lorsqu'on l'utilise pour concevoir des interfaces graphiques ou que l'on architecture son application en utilisant les mécanismes des signaux etslots par exemple. Qt permet la portabilité des applications qui n'utilisent que ses composants par simple recompilation du code source. Les environnements supportés sont les Unix (dont Linux) qui utilisent le système graphique X Window System ou Wayland, Windows, Mac OS X et également Tizen. Le fait d'être une bibliothèque logicielle multiplate-forme attire un grand nombre de personnes qui ont donc l'occasion de diffuser leurs programmes sur les principaux OS existants. Qt est notamment connu pour être la bibliothèque sur laquelle repose l'environnement graphique KDE, l'un des environnements de bureau les plus utilisés dans le monde Linux.
+
+### La relation entre C++ et le SGBD : 
+
+Le module Qt SQL fournit une couche pilote, une couche API SQL et une couche d'interface utilisateur pour les bases de données SQL. SQLite est une bibliothèque in-process qui implémente un moteur de base de données SQL transactionnel autonome, sans serveur et sans configuration. Fondamentalement, une base de données stockée dans un seul fichier (ou mémoire).
+Qt offre un support (pilotes) pour d'autres bases de données populaires comme MySQL et PostgreSQL, mais SQLite est l'option la plus simple et la plus rapide pour une application simple et elle devrait être plus que suffisante dans la plupart des cas. Alors , à travers ce code je manipule ma connexion à la base donné local : 
+  * connOpen() //Pour se connécté à la base de donnée « database.db »
+  * connClose() //Pour férmé la connection à la base de donnée .
+  
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlError>
+#include <QSqlQuery> 
+
+  * connOpen() //Pour se connécté à la base de donnée « database.db »
+  * connClose() //Pour férmé la connection à la base de donnée .
+
+ ```QSqlDatabase mydb;
+
+void connClose(){
+ mydb.close();
+ mydb.removeDatabase(QSqlDatabase::defaultConnection);}
+
+bool connOpen(){
+ mydb = QSqlDatabase::addDatabase("QSQLITE");
+ mydb.setDatabaseName("C:/Users/hp/Desktop/Projet/Database/D
+atabase.db");
+ if (!mydb.open()){
+ qDebug() << "Failed to open the database";
+ return false;}
+ else{
+ qDebug()<<"Conneted...";
+ return true;}  ```
 
